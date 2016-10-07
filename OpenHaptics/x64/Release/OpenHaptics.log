@@ -1,0 +1,26 @@
+﻿Build started 28/9/2016 4:43:36 PM.
+     1>Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\CNS\DEV\OpenHaptics\x64\Release\".
+       InitializeBuildStatus:
+         Creating "x64\Release\OpenHaptics.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /IC:\OpenHaptics\Developer\3.4.0\include /I"C:\OpenHaptics\Developer\3.4.0 \utilities\include" /IC:\OpenHaptics\Developer\3.4.0\QuickHaptics\header /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc100.pdb" /Gd /TP /errorReport:prompt SimpleSphere.cpp
+         SimpleSphere.cpp
+     1>c:\openhaptics\developer\3.4.0\quickhaptics\header\QHWin32Class.h(58): warning C4273: 'qhStart' : inconsistent dll linkage
+                 c:\openhaptics\developer\3.4.0\quickhaptics\header\QHWin32Class.h(34) : see previous definition of 'qhStart'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.exe" /NOLOGO /LIBPATH:C:\OpenHaptics\Developer\3.4.0\lib\x64\Release /LIBPATH:C:\OpenHaptics\Developer\3.4.0\utilities\lib\x64\Release /LIBPATH:C:\OpenHaptics\Developer\3.4.0\QuickHaptics\lib\x64\Release hd.lib hdu.lib hl.lib hlu.lib hapticmouse.lib snapconstraints.lib Qh.lib QHWin32Wrapper.lib QHGLUTWrapper.lib glui32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Release\OpenHaptics.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.lib" /MACHINE:X64 x64\Release\SimpleSphere.obj
+         Generating code
+         Finished generating code
+         OpenHaptics.vcxproj -> C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.exe;#1" /manifest x64\Release\OpenHaptics.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "x64\Release\OpenHaptics.unsuccessfulbuild".
+         Touching "x64\Release\OpenHaptics.lastbuildstate".
+     1>Done Building Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.92
