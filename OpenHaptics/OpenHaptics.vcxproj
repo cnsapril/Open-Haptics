@@ -62,16 +62,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\OpenHaptics\Developer\3.4.0\include;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\header;C:\OpenHaptics\Developer\3.4.0\utilities\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\OpenHaptics\Developer\3.4.0\include;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\header;C:\OpenHaptics\Developer\3.4.0\utilities\include;C:\OpenHaptics\Developer\3.4.0\include\HD;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\OpenHaptics\Developer\3.4.0\include;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\header;C:\OpenHaptics\Developer\3.4.0\utilities\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>C:\OpenHaptics\Developer\3.4.0\lib;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\lib;C:\OpenHaptics\Developer\3.4.0\utilities\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\OpenHaptics\Developer\3.4.0\Quickhaptics\lib;C:\OpenHaptics\Developer\3.4.0\utilities\lib;C:\OpenHaptics\Developer\3.4.0\lib\x64\Release;C:\OpenHaptics\Developer\3.4.0\utilities\lib\x64\Release;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>C:\OpenHaptics\Developer\3.4.0\lib;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\lib;C:\OpenHaptics\Developer\3.4.0\utilities\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\OpenHaptics\Developer\3.4.0\lib\x64\Release;C:\OpenHaptics\Developer\3.4.0\Quickhaptics\lib\x64\Release;C:\OpenHaptics\Developer\3.4.0\utilities\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,7 +98,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(OH_SDK_BASE)\include;$(OH_SDK_BASE) \utilities\include;$(OH_SDK_BASE)\QuickHaptics\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -126,9 +126,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FunctionShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Weight.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

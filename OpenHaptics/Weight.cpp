@@ -7,7 +7,7 @@ y axis: Bottom to top, top has larger value
 z axis: Far to near, near has larger value
 
 *******************************************************************************/
-#ifdef  _WIN64
+/*#ifdef  _WIN64
 #pragma warning (disable:4996)
 #endif
 
@@ -27,9 +27,9 @@ z axis: Far to near, near has larger value
 
 #include <HD/hd.h>
 #include <HDU/hduError.h>
-#include <HDU/hduVector.h>
+#include <HDU/hduVector.h>*/
 
-/* Assumes the unit is a PHANTOM from SensAble Technologies, Inc. */
+/* Assumes the unit is a PHANTOM from SensAble Technologies, Inc. 
 #define MAX_INPUT_DOF   6   
 #define MAX_OUTPUT_DOF  6
 
@@ -67,7 +67,7 @@ void mainLoop();
 /*****************************************************************************
  Prints DAC values.
 *****************************************************************************/
-void PrintDACValues()
+/*void PrintDACValues()
 {
     int i;
 
@@ -82,7 +82,7 @@ void PrintDACValues()
 /*****************************************************************************
  Directly sets the DAC values.
 *****************************************************************************/
-HDCallbackCode HDCALLBACK ServoSchedulerCallback(void *pUserData)
+/*HDCallbackCode HDCALLBACK ServoSchedulerCallback(void *pUserData)
 {
     HDErrorInfo error;
 
@@ -113,7 +113,7 @@ HDCallbackCode HDCALLBACK ServoSchedulerCallback(void *pUserData)
 /*****************************************************************************
  Copies state in thread-safe manner.
 *****************************************************************************/
-HDCallbackCode HDCALLBACK UpdateMotorDACValuesCallback(void *pUserData)
+/*HDCallbackCode HDCALLBACK UpdateMotorDACValuesCallback(void *pUserData)
 {
     memcpy(forceServo,
            forceApp,
@@ -140,7 +140,7 @@ HDCallbackCode HDCALLBACK UpdateMotorDACValuesCallback(void *pUserData)
 /*****************************************************************************
  Schedules the UpdateMotorDACValuesCallback.
 *****************************************************************************/
-void SetDACValue(int nMotorIndex)
+/*void SetDACValue(int nMotorIndex)
 {
     double nValue;    
 
@@ -166,7 +166,7 @@ void SetDACValue(int nMotorIndex)
 }
 
 /* Synchronization structure. */
-typedef struct
+/*typedef struct
 {
     HDlong encoder_values[MAX_INPUT_DOF];
     HDlong motor_dac_values[MAX_OUTPUT_DOF];   
@@ -176,7 +176,7 @@ typedef struct
 /*****************************************************************************
  Callback that retrieves state.
 *****************************************************************************/
-HDCallbackCode HDCALLBACK GetDeviceStateCallback(void *pUserData)
+/*HDCallbackCode HDCALLBACK GetDeviceStateCallback(void *pUserData)
 {
     DeviceStateStruct *pState = (DeviceStateStruct *) pUserData;
 
@@ -190,7 +190,7 @@ HDCallbackCode HDCALLBACK GetDeviceStateCallback(void *pUserData)
 /*****************************************************************************
  Callback that retrieves state.
 *****************************************************************************/
-void PrintDeviceState(HDboolean bContinuous)
+/*void PrintDeviceState(HDboolean bContinuous)
 {
     int i;
     DeviceStateStruct state;
@@ -247,7 +247,7 @@ void PrintDeviceState(HDboolean bContinuous)
 /*******************************************************************************
  Main function.
 *******************************************************************************/
-int main(int argc, char* argv[])
+/*int main(int argc, char* argv[])
 {  
     HDErrorInfo error;
     HDstring model;
@@ -280,7 +280,7 @@ int main(int argc, char* argv[])
 
     /* Schedule the haptic callback function for continuously monitoring the
        button state and rendering the anchored spring force */
-    gCallbackHandle = hdScheduleAsynchronous(
+ /*   gCallbackHandle = hdScheduleAsynchronous(
         ServoSchedulerCallback, 0, HD_MAX_SCHEDULER_PRIORITY);
     if (HD_DEVICE_ERROR(error = hdGetError()))
     {
@@ -300,7 +300,7 @@ int main(int argc, char* argv[])
 	}
 
     /* Start the haptic rendering loop */
-    hdStartScheduler();
+/*    hdStartScheduler();
     if (HD_DEVICE_ERROR(error = hdGetError()))
     {
         hduPrintError(stderr, &error, "Failed to start servoloop");
@@ -314,7 +314,7 @@ int main(int argc, char* argv[])
     PrintHelp();
 
     /* Start the main application loop */
-    mainLoop();
+/*    mainLoop();
 
     hdStopScheduler();
     hdUnschedule(gCallbackHandle);
@@ -327,7 +327,7 @@ int main(int argc, char* argv[])
  The main loop of execution.  Detects and interprets keypresses.  Monitors and 
  initiates error recovery if necessary.
 ******************************************************************************/
-void mainLoop()
+/*void mainLoop()
 {
     int keypress;
     int nMotorIndex = 0;
@@ -350,7 +350,7 @@ void mainLoop()
         }
 
         /* Check if the scheduled callback has stopped running */
-        if (!hdWaitForCompletion(gCallbackHandle, HD_WAIT_CHECK_STATUS))
+/*        if (!hdWaitForCompletion(gCallbackHandle, HD_WAIT_CHECK_STATUS))
         {
             fprintf(stderr, "\nThe main scheduler callback has exited\n");
             fprintf(stderr, "\nPress any key to quit.\n");

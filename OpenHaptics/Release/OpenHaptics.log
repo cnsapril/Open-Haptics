@@ -1,26 +1,33 @@
-﻿Build started 7/10/2016 3:14:17 PM.
-     1>Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" on node 2 (build target(s)).
+﻿生成启动时间为 2016/10/8 星期六 1:46:11。
+     1>项目“F:\dev\workspace\FYP\Open-Haptics\OpenHaptics\OpenHaptics.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         Creating "Release\OpenHaptics.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         正在对“Release\OpenHaptics.unsuccessfulbuild”执行 Touch 任务。
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\OpenHaptics\Developer\3.4.0\include /I"C:\OpenHaptics\Developer\3.4.0 \utilities\include" /IC:\OpenHaptics\Developer\3.4.0\QuickHaptics\header /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Weight.cpp
-         Weight.cpp
-     1>Weight.cpp(154): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(304) : see declaration of 'scanf'
-     1>Weight.cpp(184): warning C4995: 'HD_CURRENT_MOTOR_DAC_VALUES': name was marked as #pragma deprecated
+         所有输出均为最新。
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\CNS\DEV\OpenHaptics\Release\OpenHaptics.exe" /NOLOGO /LIBPATH:C:\OpenHaptics\Developer\3.4.0\lib\Win32\Release /LIBPATH:C:\OpenHaptics\Developer\3.4.0\utilities\lib\Win32\Release /LIBPATH:C:\OpenHaptics\Developer\3.4.0\QuickHaptics\lib\Win32\Release hd.lib hdu.lib hl.lib hlu.lib hapticmouse.lib snapconstraints.lib Qh.lib QHWin32Wrapper.lib QHGLUTWrapper.lib glui32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\OpenHaptics.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\CNS\DEV\OpenHaptics\Release\OpenHaptics.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\CNS\DEV\OpenHaptics\Release\OpenHaptics.lib" /MACHINE:X86 Release\Weight.obj
-         Generating code
-         Finished generating code
-     1>hdu.lib(hduError.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'hdu.lib(hduError.obj)' or at 'C:\CNS\DEV\OpenHaptics\Release\vc100.pdb'; linking object as if no debug info
-         OpenHaptics.vcxproj -> C:\CNS\DEV\OpenHaptics\Release\OpenHaptics.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\CNS\DEV\OpenHaptics\Release\OpenHaptics.exe;#1" /manifest Release\OpenHaptics.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Deleting file "Release\OpenHaptics.unsuccessfulbuild".
-         Touching "Release\OpenHaptics.lastbuildstate".
-     1>Done Building Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" (build target(s)).
+         E:\Microsoft Visual Studio 2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.exe" /NOLOGO /LIBPATH:\lib\Win32\Release /LIBPATH:\utilities\lib\Win32\Release /LIBPATH:\QuickHaptics\lib\Win32\Release hd.lib hdu.lib hl.lib hlu.lib hapticmouse.lib snapconstraints.lib Qh.lib QHWin32Wrapper.lib QHGLUTWrapper.lib glui32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\OpenHaptics.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.lib" /MACHINE:X86 Release\main.obj
+         Release\Weight.obj
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetCurrentDevice@0
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdStopScheduler@0
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdSetDoublev@8
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdUnschedule@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetError@0
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdEndFrame@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 _hduIsSchedulerError
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdScheduleAsynchronous@12
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdDisableDevice@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdScheduleSynchronous@12
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdWaitForCompletion@8
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdInitDevice@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdBeginFrame@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetString@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 _hduPrintError
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetDoublev@8
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdEnable@4
+     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdStartScheduler@0
+     1>F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.exe : fatal error LNK1120: 18 个无法解析的外部命令
+     1>已完成生成项目“F:\dev\workspace\FYP\Open-Haptics\OpenHaptics\OpenHaptics.vcxproj”(build 个目标)的操作 - 失败。
 
-Build succeeded.
+生成失败。
 
-Time Elapsed 00:00:02.65
+已用时间 00:00:00.65
