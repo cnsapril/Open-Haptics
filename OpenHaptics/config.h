@@ -30,8 +30,8 @@
 #define ADJUST_OFFSET 53
 
 /* Force vectors */
-static double forceVecApp[FORCE_DIM];
-static double forceVecServo[FORCE_DIM];
+hduVector3Dd forceVecApp;
+hduVector3Dd forceVecServo;
 
 /* Haptic device handler */
 HDSchedulerHandle gCallbackHandle = HD_INVALID_HANDLE; 
@@ -47,6 +47,7 @@ void PrintHelp(void);
 HDCallbackCode HDCALLBACK ServoSchedulerCallback(void);
 HDCallbackCode HDCALLBACK UpdateForceCallback(void);
 void SetForce(void);
+void SetTorque(void);
 HDCallbackCode HDCALLBACK GetDeviceStateCallback(void);
 void PrintDeviceState(HDboolean); // debug only
 int CheckError(char*);

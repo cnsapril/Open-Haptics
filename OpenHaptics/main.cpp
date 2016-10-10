@@ -76,9 +76,55 @@ void SetForce()
 	double adjustedMass = (inputMass * ADJUST_FACTOR - ADJUST_OFFSET) / 1000.0;
 
 	// Gravity is vertical force along the device's Y-axis
-	forceVecApp[1] = -(adjustedMass * GRAVITY_ACC);
+	forceVecApp.set(0.0, -(adjustedMass * GRAVITY_ACC), 0.0);
 
 	hdScheduleSynchronous(UpdateForceCallback, 0, HD_DEFAULT_SCHEDULER_PRIORITY);
+}
+
+/************************************************************************
+ Read user input of the weight and length and apply the value to 
+ forceVecApp.
+ ***********************************************************************/
+void SetTorque()
+{
+	double inputMass;
+	int inputLength;
+
+	printf("\nInput the weigh: between 0 and 300g: [0 - 300]\n");
+	do
+	{
+		printf("Enter the weight and press return: ");
+		scanf("%lf", &inputMass);
+	} while(inputMass < 0 || inputMass > 300);
+
+	printf("\nInput the length of the object in cm:\n");
+	scanf("%d", &inputLength);
+
+	double halfLength = inputLength / 2.0; // Since the object is balanced, the center of gravity is at half of its length
+	double forceMag; // The magnitude of the force
+	double pivot = 2; // Assuming pivot point to be 2 cm from the end of the object
+	double gravity = inputMass * GRAVITY_ACC;
+
+	DeviceStateStruct state;
+
+	do
+	{
+		hdScheduleSynchronous(GetDeviceStateCallback, &state, 
+			HD_DEFAULT_SCHEDULER_PRIORITY);
+
+		double currentZPos = state.position[2];
+		double cosTheta = inputLength / currentZPos;
+		double sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+
+		forceMag = halfLength * gravity * cosTheta / pivot;
+
+		forceVecApp.set(0.0, forceMag*cosTheta, forceMag*sinTheta);
+
+		hdScheduleSynchronous(UpdateForceCallback, 0, 
+			HD_DEFAULT_SCHEDULER_PRIORITY);
+
+	} while (!_kbhit());
+
 }
 
 /************************************************************************
