@@ -1,33 +1,21 @@
-﻿生成启动时间为 2016/10/8 星期六 1:46:11。
-     1>项目“F:\dev\workspace\FYP\Open-Haptics\OpenHaptics\OpenHaptics.vcxproj”在节点 2 上(build 个目标)。
+﻿Build started 11/10/2016 12:40:47 PM.
+     1>Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         正在对“Release\OpenHaptics.unsuccessfulbuild”执行 Touch 任务。
+         Touching "Release\OpenHaptics.unsuccessfulbuild".
        ClCompile:
-         所有输出均为最新。
-       Link:
-         E:\Microsoft Visual Studio 2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.exe" /NOLOGO /LIBPATH:\lib\Win32\Release /LIBPATH:\utilities\lib\Win32\Release /LIBPATH:\QuickHaptics\lib\Win32\Release hd.lib hdu.lib hl.lib hlu.lib hapticmouse.lib snapconstraints.lib Qh.lib QHWin32Wrapper.lib QHGLUTWrapper.lib glui32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\OpenHaptics.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.lib" /MACHINE:X86 Release\main.obj
-         Release\Weight.obj
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetCurrentDevice@0
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdStopScheduler@0
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdSetDoublev@8
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdUnschedule@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetError@0
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdEndFrame@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 _hduIsSchedulerError
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdScheduleAsynchronous@12
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdDisableDevice@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdScheduleSynchronous@12
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdWaitForCompletion@8
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdInitDevice@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdBeginFrame@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetString@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 _hduPrintError
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdGetDoublev@8
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdEnable@4
-     1>main.obj : error LNK2001: 无法解析的外部符号 __imp__hdStartScheduler@0
-     1>F:\dev\workspace\FYP\Open-Haptics\Release\OpenHaptics.exe : fatal error LNK1120: 18 个无法解析的外部命令
-     1>已完成生成项目“F:\dev\workspace\FYP\Open-Haptics\OpenHaptics\OpenHaptics.vcxproj”(build 个目标)的操作 - 失败。
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\OpenHaptics\Developer\3.4.0\include /I"C:\OpenHaptics\Developer\3.4.0 \utilities\include" /IC:\OpenHaptics\Developer\3.4.0\QuickHaptics\header /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D WIN64 /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp Weight.cpp
+         main.cpp
+     1>main.cpp(73): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(304) : see declaration of 'scanf'
+     1>main.cpp(97): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(304) : see declaration of 'scanf'
+     1>main.cpp(101): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(304) : see declaration of 'scanf'
+     1>main.cpp(113): error C2664: 'hdScheduleSynchronous' : cannot convert parameter 1 from 'HDCallbackCode (__stdcall *)(void)' to 'HDSchedulerCallback'
+                 None of the functions with this name in scope match the target type
+         Weight.cpp
+     1>Done Building Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" (build target(s)) -- FAILED.
 
-生成失败。
+Build FAILED.
 
-已用时间 00:00:00.65
+Time Elapsed 00:00:01.40

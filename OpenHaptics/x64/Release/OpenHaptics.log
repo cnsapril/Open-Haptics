@@ -1,17 +1,25 @@
-﻿生成启动时间为 2016/10/8 星期六 1:47:33。
-     1>项目“F:\dev\workspace\FYP\Open-Haptics\OpenHaptics\OpenHaptics.vcxproj”在节点 2 上(build 个目标)。
+﻿Build started 11/10/2016 1:27:06 PM.
+     1>Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         正在创建“x64\Release\OpenHaptics.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+         Creating "x64\Release\OpenHaptics.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         所有输出均为最新。
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /IC:\OpenHaptics\Developer\3.4.0\include /I"C:\OpenHaptics\Developer\3.4.0 \utilities\include" /IC:\OpenHaptics\Developer\3.4.0\QuickHaptics\header /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc100.pdb" /Gd /TP /errorReport:prompt main.cpp
+         main.cpp
+     1>main.cpp(150): warning C4129: 'y' : unrecognized character escape sequence
        Link:
-         所有输出均为最新。
-         OpenHaptics.vcxproj -> F:\dev\workspace\FYP\Open-Haptics\x64\Release\OpenHaptics.exe
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.exe" /NOLOGO /LIBPATH:C:\OpenHaptics\Developer\3.4.0\lib\x64\Release /LIBPATH:C:\OpenHaptics\Developer\3.4.0\utilities\lib\x64\Release /LIBPATH:C:\OpenHaptics\Developer\3.4.0\QuickHaptics\lib\x64\Release hd.lib hdu.lib hl.lib hlu.lib hapticmouse.lib snapconstraints.lib Qh.lib QHWin32Wrapper.lib QHGLUTWrapper.lib glui32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Release\OpenHaptics.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.lib" /MACHINE:X64 x64\Release\main.obj
+         x64\Release\Weight.obj
+         Generating code
+         Finished generating code
+     1>hdu.lib(hduError.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'hdu.lib(hduError.obj)' or at 'C:\CNS\DEV\OpenHaptics\x64\Release\vc100.pdb'; linking object as if no debug info
+         OpenHaptics.vcxproj -> C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\CNS\DEV\OpenHaptics\x64\Release\OpenHaptics.exe;#1" /manifest x64\Release\OpenHaptics.exe.intermediate.manifest
        FinalizeBuildStatus:
-         正在删除文件“x64\Release\OpenHaptics.unsuccessfulbuild”。
-         正在对“x64\Release\OpenHaptics.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“F:\dev\workspace\FYP\Open-Haptics\OpenHaptics\OpenHaptics.vcxproj”(build 个目标)的操作。
+         Deleting file "x64\Release\OpenHaptics.unsuccessfulbuild".
+         Touching "x64\Release\OpenHaptics.lastbuildstate".
+     1>Done Building Project "C:\CNS\DEV\OpenHaptics\OpenHaptics\OpenHaptics.vcxproj" (build target(s)).
 
-生成成功。
+Build succeeded.
 
-已用时间 00:00:00.12
+Time Elapsed 00:00:02.10

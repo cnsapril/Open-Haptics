@@ -46,9 +46,9 @@ typedef struct
 void PrintHelp(void);
 HDCallbackCode HDCALLBACK ServoSchedulerCallback(void);
 HDCallbackCode HDCALLBACK UpdateForceCallback(void);
+HDCallbackCode HDCALLBACK GetDeviceStateCallback(void);
 void SetForce(void);
 void SetTorque(void);
-HDCallbackCode HDCALLBACK GetDeviceStateCallback(void);
 void PrintDeviceState(HDboolean); // debug only
 int CheckError(char*);
 void mainLoop(void);

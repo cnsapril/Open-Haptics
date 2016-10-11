@@ -11,6 +11,7 @@ void PrintHelp()
 		I: Input weight\n\
 		L: Apply torque force to long objects\n\
 		T: Apply texture\n\
+		P: Print device state\n\
 		Q: Quit the program\n\
 		---"};
 
@@ -54,6 +55,18 @@ HDCallbackCode HDCALLBACK ServoSchedulerCallback(void *pUserData)
 HDCallbackCode HDCALLBACK UpdateForceCallback(void *pUserData)
 {
 	memcpy(forceVecServo, forceVecApp, sizeof(double) * FORCE_DIM);
+
+	return HD_CALLBACK_DONE;
+}
+
+/************************************************************************
+ Callback function that retrieves the current device state
+************************************************************************/
+HDCallbackCode HDCALLBACK GetDeviceStateCallback(void *pUserData)
+{
+	DeviceStateStruct *pState = (DeviceStateStruct *) pUserData;
+
+	hdGetDoublev(HD_CURRENT_POSITION, pState->position);
 
 	return HD_CALLBACK_DONE;
 }
@@ -103,40 +116,45 @@ void SetTorque()
 	double halfLength = inputLength / 2.0; // Since the object is balanced, the center of gravity is at half of its length
 	double forceMag; // The magnitude of the force
 	double pivot = 2; // Assuming pivot point to be 2 cm from the end of the object
-	double gravity = inputMass * GRAVITY_ACC;
+	double gravity = inputMass * GRAVITY_ACC / 1000.0;
 
 	DeviceStateStruct state;
+	memset(&state, 0, sizeof(DeviceStateStruct));
+
+	printf("\nCurrent gravity: %lf N\n", gravity);
 
 	do
 	{
 		hdScheduleSynchronous(GetDeviceStateCallback, &state, 
 			HD_DEFAULT_SCHEDULER_PRIORITY);
 
-		double currentZPos = state.position[2];
-		double cosTheta = inputLength / currentZPos;
-		double sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+		double currentZPos = state.position[2] * 10;
+		if (currentZPos <= 0)
+		{
+			forceVecApp.set(0.0, 0.0, 0.0);
+		}
+		else
+		{
+			double cosTheta = inputLength / currentZPos;
+			double sinTheta = sqrt(1.0 - cosTheta * cosTheta);
 
-		forceMag = halfLength * gravity * cosTheta / pivot;
+			forceMag = halfLength * gravity * cosTheta / pivot;
 
-		forceVecApp.set(0.0, forceMag*cosTheta, forceMag*sinTheta);
+			double y_force = forceMag * cosTheta > 3.3 ? 3.3 : forceMag * cosTheta;
+			double z_force = forceMag * sinTheta > 3.3 ? 3.3 : forceMag * sinTheta;
+
+			y_force = y_force < 0 ? 0 : y_force;
+			z_force = z_force < 0 ? 0 : z_force;
+
+			forceVecApp.set(0.0, y_force, z_force);
+			printf("\y-force: %lf   z-force: %lf\n", y_force, z_force);
+		}
 
 		hdScheduleSynchronous(UpdateForceCallback, 0, 
 			HD_DEFAULT_SCHEDULER_PRIORITY);
 
 	} while (!_kbhit());
 
-}
-
-/************************************************************************
- Callback function that retrieves the current device state
-************************************************************************/
-HDCallbackCode HDCALLBACK GetDeviceStateCallback(void *pUserData)
-{
-	DeviceStateStruct *pState = (DeviceStateStruct *) pUserData;
-
-	hdGetDoublev(HD_CURRENT_POSITION, pState->position);
-
-	return HD_CALLBACK_DONE;
 }
 
 /************************************************************************
@@ -210,8 +228,9 @@ void mainLoop()
 			switch (keypress)
 			{
 				case 'I': SetForce(); break;
-				case 'L': printf("Apply torque... To be implemented"); break;
+				case 'L': SetTorque(); break;
 				case 'T': printf("Apply texture... To be implemented"); break;
+				case 'P': PrintDeviceState(TRUE);
 				case 'Q': printf("Quiting..."); return; break;
 				default: PrintHelp(); break;
 			}
