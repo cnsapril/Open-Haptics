@@ -27,15 +27,15 @@ HDCallbackCode HDCALLBACK ServoSchedulerCallback(void *pUserData)
 	
 	hdBeginFrame(hdGetCurrentDevice());
 
-	assert(forceVecServo);
-
 	hdSetDoublev(HD_CURRENT_FORCE, forceVecServo);
+
+	hdSetDoublev(HD_CURRENT_JOINT_TORQUE, torqueServo);
 
 	hdEndFrame(hdGetCurrentDevice());
 
 	if (HD_DEVICE_ERROR(error = hdGetError()))
 	{
-		hduPrintError(stderr, &error, "Error while applying forces.");
+		hduPrintError(stderr, &error, "Error while applying force and torque.");
 		memset(forceVecServo, 0, sizeof(double) * FORCE_DIM);
 
 		if (hduIsSchedulerError(&error))
@@ -50,15 +50,24 @@ HDCallbackCode HDCALLBACK ServoSchedulerCallback(void *pUserData)
 }
 
 /************************************************************************
- Copies state in thread-safe manner.
+ Copies force state in thread-safe manner.
 ************************************************************************/
 HDCallbackCode HDCALLBACK UpdateForceCallback(void *pUserData)
 {
 	memcpy(forceVecServo, forceVecApp, sizeof(double) * FORCE_DIM);
-
+	
 	return HD_CALLBACK_DONE;
 }
 
+/************************************************************************
+ Copies torque state in thread-safe manner.
+************************************************************************/
+HDCallbackCode HDCALLBACK UpdateTorqueCallback(void *pUserData)
+{
+	memcpy(torqueServo, torqueApp, sizeof(double) * TORQUE_DIM);
+
+	return HD_CALLBACK_DONE;
+}
 /************************************************************************
  Callback function that retrieves the current device state
 ************************************************************************/
@@ -113,44 +122,39 @@ void SetTorque()
 	printf("\nInput the length of the object in cm:\n");
 	scanf("%d", &inputLength);
 
+	inputLength *= 10; // Convert input length to mm
+
 	double halfLength = inputLength / 2.0; // Since the object is balanced, the center of gravity is at half of its length
-	double forceMag; // The magnitude of the force
-	double pivot = 2; // Assuming pivot point to be 2 cm from the end of the object
 	double gravity = inputMass * GRAVITY_ACC / 1000.0;
+
+	hduVector3Dd force(0, -gravity, 0);
 
 	DeviceStateStruct state;
 	memset(&state, 0, sizeof(DeviceStateStruct));
 
-	printf("\nCurrent gravity: %lf N\n", gravity);
+	printf("\nCurrent gravity: %lf N\n", -force[1]);
 
 	do
 	{
 		hdScheduleSynchronous(GetDeviceStateCallback, &state, 
 			HD_DEFAULT_SCHEDULER_PRIORITY);
 
-		double currentZPos = state.position[2] * 10;
-		if (currentZPos <= 0)
-		{
-			forceVecApp.set(0.0, 0.0, 0.0);
-		}
-		else
-		{
-			double cosTheta = inputLength / currentZPos;
-			double sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+		double currentZPos = state.position[2]; // Current shift in Z-axis in mm
+		
+		if (currentZPos < 0) currentZPos = 0;
 
-			forceMag = halfLength * gravity * cosTheta / pivot;
+		double yPos = sqrt(halfLength * halfLength - currentZPos * currentZPos);
 
-			double y_force = forceMag * cosTheta > 3.3 ? 3.3 : forceMag * cosTheta;
-			double z_force = forceMag * sinTheta > 3.3 ? 3.3 : forceMag * sinTheta;
+		hduVector3Dd forcePos(yPos, 0, 0);
+		hduVector3Dd originPos(0, currentZPos, 0);
+		hduVector3Dd posVector;
 
-			y_force = y_force < 0 ? 0 : y_force;
-			z_force = z_force < 0 ? 0 : z_force;
 
-			forceVecApp.set(0.0, y_force, z_force);
-			printf("\y-force: %lf   z-force: %lf\n", y_force, z_force);
-		}
+		hduVecSubtract(posVector, forcePos, originPos);
 
-		hdScheduleSynchronous(UpdateForceCallback, 0, 
+		torqueApp = crossProduct(posVector, force);
+
+		hdScheduleSynchronous(UpdateTorqueCallback, 0, 
 			HD_DEFAULT_SCHEDULER_PRIORITY);
 
 	} while (!_kbhit());
